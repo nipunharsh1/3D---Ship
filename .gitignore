@@ -1,0 +1,27 @@
+# Build directories
+bin/
+obj/
+
+# Executable files
+3DShip
+3DShip.exe
+*.exe
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Code::Blocks specific
+*.layout
+*.depend
+*.cbp.save
+
+# Temporary files
+*.tmp
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
