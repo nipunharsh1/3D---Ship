@@ -1,7 +1,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 
 // Camera variables
 float cameraAngleX = 20.0f;
@@ -283,7 +284,7 @@ void reshape(int width, int height) {
 }
 
 // Timer callback for animation
-void timer(int value) {
+void timer(int) {
     shipRotation += 0.3f;
     if (shipRotation > 360.0f) shipRotation -= 360.0f;
     
@@ -325,7 +326,7 @@ void mouseMotion(int x, int y) {
 }
 
 // Keyboard callback
-void keyboard(unsigned char key, int x, int y) {
+void keyboard(unsigned char key, int, int) {
     switch (key) {
         case 'w':
         case 'W':
