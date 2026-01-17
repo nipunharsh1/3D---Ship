@@ -1,3 +1,7 @@
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
@@ -141,12 +145,13 @@ void drawCabin() {
 // Function to draw masts
 void drawMasts() {
     glColor3f(0.3f, 0.2f, 0.1f); // Dark brown for masts
+    GLUquadric* quad;
     
     // Main mast
     glPushMatrix();
     glTranslatef(0.5f, 1.2f, 0.0f);
     glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
-    GLUquadric* quad = gluNewQuadric();
+    quad = gluNewQuadric();
     gluCylinder(quad, 0.08, 0.08, 2.5, 10, 10);
     gluDeleteQuadric(quad);
     glPopMatrix();
