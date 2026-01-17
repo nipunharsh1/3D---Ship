@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Ship - Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Animation Components -->
+    <div class="background-gradient"></div>
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+
+    <!-- Live Demo Script Overlay (Hidden by Default) -->
+    <div id="demo-script" class="demo-overlay hidden">
+        <div class="demo-card">
+            <div class="demo-header">
+                <h3>⚓ Live Demo Cheat Sheet</h3>
+                <button class="close-btn" onclick="toggleDemo()">×</button>
+            </div>
+            <div class="demo-content">
+                <div class="demo-section">
+                    <h4>1. Start (Orbit View)</h4>
+                    <p>"This is the final model. Notice the curved stern and V-shape hull."</p>
+                    <p><strong>Action:</strong> Rotate w/ Arrow Keys.</p>
+                </div>
+                <div class="demo-section">
+                    <h4>2. Details</h4>
+                    <p>"Detail strips (red keel, white bands) follow the curvature mathematically."</p>
+                    <p><strong>Action:</strong> Zoom w/ Page Up/Down.</p>
+                </div>
+                <div class="demo-section">
+                    <h4>3. Captain Mode (Simulator)</h4>
+                    <p>"Dynamic camera system. We drive the ship."</p>
+                    <p><strong>Action:</strong> Press 'C'. Drive with W/S, Turn A/D.</p>
+                </div>
+                <div class="demo-section">
+                    <h4>4. Water</h4>
+                    <p>"Vertex grid moving with a Sine wave."</p>
+                </div>
+                <hr>
+                <div class="demo-section">
+                    <h4>Controls</h4>
+                    <ul class="controls-list">
+                        <li><span>Arrow Keys</span> Rotate View</li>
+                        <li><span>Page Up/Dn</span> Zoom</li>
+                        <li><span>'C'</span> Toggle Camera</li>
+                        <li><span>W / S</span> Move Ship</li>
+                        <li><span>A / D</span> Turn Ship</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Presentation Container -->
+    <div class="slides-container" id="slides-container">
+
+        <!-- Slide 1: Project Overview -->
+        <div class="slide active">
+            <div class="slide-content">
+                <div class="header-tag">Computer Graphics Project</div>
+                <h1>3D Ship - <span class="highlight">Presentation</span></h1>
+                
+                <div class="video-container">
+                    <video controls class="demo-video">
+                        <source src="ship.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Tools</h3>
+                        <p>C++, OpenGL, GLUT</p>
+                    </div>
+                    <div class="card">
+                        <h3>Objective</h3>
+                        <p>Model a complex 3D object using hierarchical transformations and procedural geometry.</p>
+                    </div>
+                </div>
+                <div class="footer-nav">Slide 1 of 5 • Press → to next</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Modelling Techniques -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Modelling Techniques</h2>
+                <p class="subtitle">How the ship was built</p>
+                
+                <div class="inline-image-container">
+                    <img src="ship_preview.png" alt="Ship Model" class="inline-image">
+                </div>
+                
+                <ul class="feature-list">
+                    <li>
+                        <span class="icon">🏗️</span>
+                        <div class="text">
+                            <strong>Hierarchical Modelling</strong>
+                            <p>Scene graph using <code>glPushMatrix()</code> & <code>glPopMatrix()</code>. Parent (Ship) transforms propagate to Children.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🧱</span>
+                        <div class="text">
+                            <strong>Primitives vs Custom</strong>
+                            <p>Standard <code>gluCylinder</code> for masts, but specific <code>glNormal3f</code> calculations for custom shapes.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">📐</span>
+                        <div class="text">
+                            <strong>Transformations</strong>
+                            <p>Compound matrices: Translation * Rotation * Scaling to assemble 50+ components.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">💡</span>
+                        <div class="text">
+                            <strong>Lighting Model</strong>
+                            <p>Dual Source: Sun (<code>GL_LIGHT0</code>) + Ambient Fill (<code>GL_LIGHT1</code>) with material properties.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3: Complexity & Creativity -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Complexity & Creativity</h2>
+                <p class="subtitle">Going beyond simple boxes</p>
+
+                <div class="split-layout">
+                    <div class="column">
+                        <div class="card highlight-card">
+                            <h3>Procedural Geometry</h3>
+                            <p><strong>V-Shape Hull:</strong> Custom <code>drawVBlock()</code> with manually calculated vertex normals for a tapered keel.</p>
+                            <p><strong>Curved Stern:</strong> <code>GL_TRIANGLE_FAN</code> generated via <code>sin(rad)</code> & <code>cos(rad)</code> loops.</p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="card">
+                            <h3>Physics & Environment</h3>
+                            <p><strong>Wave Math:</strong> <code>y = sin(x) + cos(z)</code>. Summing two waves creates non-repetitive interference.</p>
+                            <p><strong>Buoyancy:</strong> Ship's Y-position binds to the same water equation.</p>
+                            <p><strong>Background:</strong> Reusable <code>drawPyramid()</code> function for mountains.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Interaction -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Interaction & Simulation</h2>
+                <p class="subtitle">Interactive Camera Systems</p>
+
+                <div class="camera-modes">
+                    <div class="mode-box">
+                        <div class="mode-icon">🛰️</div>
+                        <h3>Orbit View</h3>
+                        <p>Polar coordinate system transformation for external inspection.</p>
+                    </div>
+                    <div class="arrow">➡</div>
+                    <div class="mode-box active-mode">
+                        <div class="mode-icon">🚢</div>
+                        <h3>Simulator View</h3>
+                        <p>Real-time <code>gluLookAt()</code> calculation:</p>
+                        <p class="code-snippet">Eye = ShipPos + sin(Rotation)</p>
+                    </div>
+                </div>
+
+                <div class="inputs-bar">
+                    <span>Keyboard Callbacks (W, A, S, D) for steering.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Conclusion -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Conclusion</h2>
+                
+                <div class="card-grid">
+                    <div class="card warning">
+                        <h3>Challenges Solved</h3>
+                        <p><strong>Z-Fighting:</strong> Flickering windows. Solved by adding small offset to geometry.</p>
+                    </div>
+                    <div class="card success">
+                        <h3>Future Improvements</h3>
+                        <p>Adding Texture Mapping (images) and Particle Effects (smoke/fog).</p>
+                    </div>
+                </div>
+
+                <div class="final-statement">
+                    <h3>Ready for Demo</h3>
+                    <p>Press <strong>'S'</strong> on your keyboard now to toggle the Demo Script.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="navigation-controls">
+        <button onclick="prevSlide()">←</button>
+        <button onclick="toggleDemo()" class="script-btn">Show Script (S)</button>
+        <button onclick="nextSlide()">→</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
