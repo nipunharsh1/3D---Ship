@@ -1,0 +1,75 @@
+Lecture Script: 3D Ship Computer Graphics Project
+This script is designed to accompany the "3D Ship" presentation. Use the [Notes] for stage directions.
+
+Slide 1: Project Overview
+[Display Slide 1: Title Screen with Ship Video]
+
+Speaker: "Good [Morning/Afternoon], everyone. Today I am excited to present my Computer Graphics project: a fully interactive 3D Ship Model.
+
+This project was built from scratch using C++ and the OpenGL framework (specifically GLUT).
+
+The primary objective wasn't just to make something that looks like a ship, but to demonstrate advanced graphics concepts—specifically hierarchical modelling (how parts connect to each other) and procedural geometry (generating shapes with code rather than loading premade 3D assets).
+
+As you can see in the video loop, the result is a ship that floats on dynamic water with a fully explorable environment."
+
+[Press Right Arrow to Next Slide]
+
+Slide 2: Modelling Techniques
+[Display Slide 2: Modelling Techniques]
+
+Speaker: "So, how was this built? I used four key techniques.
+
+First and most importantly: Hierarchical Modelling. Think of the ship as a tree structure. The 'Ship' is the parent. The 'Masts' are children. The 'Sails' are children of the masts. I used glPushMatrix() and glPopMatrix() to create this relationship. This is critical because if I move the ship, I don't have to calculate the new position for the sails separately—they automatically follow their parent.
+
+Second: Primitives vs. Custom Shapes. OpenGL gives us basic shapes like cubes and spheres. I used cylinders for the masts, but for the hull, I had to manually calculate normals and vertices to get that specific shape.
+
+Third: Transformations. Every single part—from the cannon ports to the rigging—is placed using compound matrices. That's Translation times Rotation times Scaling. There are over 50 individual components assembled this way.
+
+Finally: Lighting. The scene uses two light sources. GL_LIGHT0 acts as the Sun for strong directional shadows, and GL_LIGHT1 provides ambient fill so the shadows aren't pitch black."
+
+[Press Right Arrow to Next Slide]
+
+Slide 3: Complexity & Creativity
+[Display Slide 3: Complexity & Creativity]
+
+Speaker: "I wanted to go beyond simple boxy shapes.
+
+The Hull has a V-shape. I wrote a custom function drawVBlock() that mathematically tapers the keel. The Stern (the back of the ship) is curved. I generated this using a GL_TRIANGLE_FAN loop with sine and cosine functions to create a smooth arc.
+
+For the Physics, the water isn't just a flat plane. It uses the equation y = sin(x) + cos(z). Here is the cool part: The ship's Y-position (height) is bound to that same equation. This means the ship strictly follows the wave height, creating a realistic buoyancy effect where it bobs up and down with the water."
+
+[Press Right Arrow to Next Slide]
+
+Slide 4: Environment Detailing
+[Display Slide 4: Environment Detailing]
+
+Speaker: "A ship needs an ocean and a shore. I created procedural functions for the environment.
+
+Rocks: These are instanced low-poly clusters. I randomize the scale and rotation for every rock so they don't look like clones of each other.
+Sand: The beach is drawn with layered quads. I added a slight gradient to blend the sand color into the water color.
+Trees: A tree is just a cylinder trunk plus stacked cones. But by varying the height and canopy spread in the code, I can create a diverse forest from a single function."
+[Press Right Arrow to Next Slide]
+
+Slide 5: Interaction & Simulation
+[Display Slide 5: Interaction & Simulation]
+
+Speaker: "This is an interactive simulation, not a static render. I implemented two camera systems.
+
+Orbit View: This allows you to inspect the model from the outside, rotating around it.
+Simulator View: By pressing 'C', you become the Captain. This uses gluLookAt() to place the camera on the deck.
+The math for the camera is interesting: The 'Eye' position is the ShipPosition plus the Sine of the rotation angle. This ensures that when you turn the ship, the camera looks in the correct new direction.
+
+You can steer the ship using WASD keys, just like a video game."
+
+[Press Right Arrow to Next Slide]
+
+Slide 6: Conclusion
+[Display Slide 6: Conclusion]
+
+Speaker: "To wrap up, I faced several technical challenges. The biggest was Z-Fighting, where the windows flickered because they were too close to the wall geometry. I solved this by adding a tiny offset to the window coordinates.
+
+For future improvements, I'd love to add Texture Mapping for wood grain and Particle Systems for cannon smoke.
+
+That concludes the presentation slides. I will now switch to the program for a Live Demo."
+
+[Action: Press 'S' to show the demo script overlay and begin the interactive showcase]
