@@ -164,6 +164,45 @@
             </div>
         </div>
 
+        <!-- 0.5. Modeling Representations -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">🧠</span> Modeling Representations</h2>
+            <p class="function-desc" style="margin-bottom: 30px; font-style: italic;">"Representation" refers to the specific data structures and mathematical methods used to define the 3D objects in the scene.</p>
+            
+            <div class="function-card" style="border-left-color: #00ccff;">
+                <span class="function-name">Hierarchical Representation</span>
+                <p class="function-desc">Objects are organized in a tree structure (Parent-Child). Operations on the parent affect children.</p>
+                <div style="margin-top: 10px;">
+                    <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+                        <li><strong>Implementation:</strong> Uses <code>glPushMatrix()</code> and <code>glPopMatrix()</code> stacks.</li>
+                        <li><strong>Example:</strong> When the <strong>Ship</strong> moves, the <strong>Propellers</strong> (children) automatically move with it.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="function-card" style="border-left-color: #00ccff;">
+                <span class="function-name">Procedural Representation</span>
+                <p class="function-desc">Shapes and animations are defined by mathematical formulas rather than static data.</p>
+                <div style="margin-top: 10px;">
+                    <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+                        <li><strong>Implementation:</strong> Uses loops and math functions (like `sin()`, `cos()`) to generate vertices at runtime.</li>
+                        <li><strong>Example:</strong> The <strong>Ocean</strong> waves are calculated every frame using a sine wave equation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="function-card" style="border-left-color: #00ccff;">
+                <span class="function-name">Surface Representation (B-Rep)</span>
+                <p class="function-desc">Objects are defined by their outer boundaries (polygons), creating a "skin" or shell.</p>
+                <div style="margin-top: 10px;">
+                    <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+                        <li><strong>Implementation:</strong> Defining vertices (`glVertex3f`) to create Quads and Triangles.</li>
+                        <li><strong>Example:</strong> The <strong>V-Hull</strong> is built by manually defining the 4 corners of each flat surface.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- 1. Geometric Primitives -->
         <div class="category-section">
             <h2 class="category-title"><span class="icon">📐</span> Geometric Primitives</h2>
