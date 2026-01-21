@@ -125,6 +125,45 @@
             <p class="subtitle">Comprehensive documentation of all drawing and logic functions in main.cpp</p>
         </div>
 
+        <!-- 0. Libraries & Dependencies -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">📚</span> Libraries & Dependencies</h2>
+            
+            <div class="function-card" style="border-left-color: #ff66cc;">
+                <span class="function-name">&lt;GL/glut.h&gt;</span>
+                <p class="function-desc">The <strong>OpenGL Utility Toolkit</strong>. This is the core framework used for the project.</p>
+                <div style="margin-top: 10px;">
+                    <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+                        <li><strong>Windowing:</strong> Handles creating the window and the main event loop (`glutMainLoop`).</li>
+                        <li><strong>Input:</strong> Manages keyboard (`glutKeyboardFunc`) and mouse interactions.</li>
+                        <li><strong>Primitives:</strong> Provides built-in shapes like `glutSolidSphere`, `glutSolidCube`, and `glutSolidCone` which are used as base geometry.</li>
+                        <li><em>Note: Automatically includes `gl.h` (Core OpenGL) and `glu.h` (GL Utilities).</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="function-card" style="border-left-color: #ff66cc;">
+                <span class="function-name">&lt;math.h&gt;</span>
+                <p class="function-desc">Standard C Math Library. Essential for the procedural generation and animation logic.</p>
+                <div style="margin-top: 10px;">
+                    <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+                        <li><strong>Trigonometry:</strong> `sin()` and `cos()` are used for the ocean waves, ship rocking motion, and circular geometry (curved stern).</li>
+                        <li><strong>Camera:</strong> Used to calculate the camera's position when orbiting or following the ship.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="function-card" style="border-left-color: #ff66cc;">
+                <span class="function-name">&lt;stdlib.h&gt;</span>
+                <p class="function-desc">Standard General Utilities Library.</p>
+                <div style="margin-top: 10px;">
+                    <ul style="margin: 0; padding-left: 20px; color: rgba(255,255,255,0.7); font-size: 0.9rem;">
+                        <li><strong>Randomization:</strong> Uses `rand()` to create variations in particle effects (wake bubbles) so they don't look artificial.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
         <!-- 1. Geometric Primitives -->
         <div class="category-section">
             <h2 class="category-title"><span class="icon">📐</span> Geometric Primitives</h2>
@@ -204,10 +243,7 @@
                 <p class="function-desc">Constructs a palm tree using a cylinder for the trunk and rotated cones for the foliage leaves.</p>
             </div>
 
-            <div class="function-card">
-                <span class="function-name">void drawSun()</span>
-                <p class="function-desc">Draws the sun as a yellow sphere. Lighting is disabled during this call to make it appear emissive.</p>
-            </div>
+
         </div>
 
         <!-- 4. Logic & Simulation -->
