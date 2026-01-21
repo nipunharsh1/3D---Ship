@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Ship - Function Reference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Override specific styles for the reference page */
+        body {
+            overflow-y: auto; /* Allow scrolling */
+            height: auto;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: var(--highlight-color);
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .function-card {
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .function-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        .function-name {
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .function-desc {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .param-tag {
+            display: inline-block;
+            background: rgba(255, 204, 0, 0.15);
+            color: var(--highlight-color);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'Fira Code', monospace;
+            margin-right: 8px;
+            margin-bottom: 5px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Decorative line */
+        .function-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animation -->
+    <div class="background-gradient"></div>
+    <div class="bubble bubble-1"></div>
+    <div class="bubble bubble-2"></div>
+    <div class="bubble bubble-3"></div>
+
+    <button onclick="window.location.href='index.html'" class="back-btn">← Back to Presentation</button>
+
+    <div class="container">
+        
+        <div class="header-section">
+            <div class="header-tag">Developer Documentation</div>
+            <h1>Function <span class="highlight">Reference</span></h1>
+            <p class="subtitle">Comprehensive documentation of all drawing and logic functions in main.cpp</p>
+        </div>
+
+        <!-- 1. Geometric Primitives -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">📐</span> Geometric Primitives</h2>
+            
+            <div class="function-card">
+                <span class="function-name">void drawPyramid(float baseSize, float height)</span>
+                <p class="function-desc">Draws a 4-sided pyramid. Used as the primary building block for creating mountains and island terrain.</p>
+                <div>
+                    <span class="param-tag">baseSize</span>
+                    <span class="param-tag">height</span>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawVBlock(float len, float h, float topW, float botW, float y)</span>
+                <p class="function-desc">Creates a custom V-shaped hull section with tapered bottom. Essential for the ship's hydrodynamic shape.</p>
+                <div>
+                    <span class="param-tag">len (Length)</span>
+                    <span class="param-tag">h (Height)</span>
+                    <span class="param-tag">topW (Top Width)</span>
+                    <span class="param-tag">botW (Bottom Width)</span>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawRock()</span>
+                <p class="function-desc">Renders a single rock using a scaled <code>glutSolidDodecahedron</code>. Used in loops to create rocky shorelines.</p>
+            </div>
+        </div>
+
+        <!-- 2. Ship Components -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">🚢</span> Ship Components</h2>
+
+            <div class="function-card">
+                <span class="function-name">void drawShipModel()</span>
+                <p class="function-desc">The master function that assembles the entire ship by calling sub-component functions (hull, deck, bridge, propellers) in a hierarchical manner.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawCurvedStern()</span>
+                <p class="function-desc">Generates the rounded back of the ship using <code>GL_TRIANGLE_FAN</code> and trigonometric calculations to create a smooth curve.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawBridge()</span>
+                <p class="function-desc">Constructs the Captain's bridge area using stacked scaled cubes and window cutouts.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawPropellerAssembly()</span>
+                <p class="function-desc">Draws the complex propeller mechanism including V-struts, shaft, and rotating blades.</p>
+            </div>
+            
+            <div class="function-card">
+                <span class="function-name">void drawDeckWindows(float length, float width, float height)</span>
+                <p class="function-desc">Procedurally generates a row of windows along the specified deck dimensions.</p>
+            </div>
+        </div>
+
+        <!-- 3. Environment & Effects -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">🌍</span> Environment & Effects</h2>
+
+            <div class="function-card">
+                <span class="function-name">void drawMountains()</span>
+                <p class="function-desc">Renders the three main islands by combining multiple `drawPyramid` calls with trees and rocks placed at specific coordinates.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawOcean()</span>
+                <p class="function-desc">Creates the dynamic water surface using a high-density vertex grid animated with Sine and Cosine waves based on time.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawCoconutTree()</span>
+                <p class="function-desc">Constructs a palm tree using a cylinder for the trunk and rotated cones for the foliage leaves.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void drawSun()</span>
+                <p class="function-desc">Draws the sun as a yellow sphere. Lighting is disabled during this call to make it appear emissive.</p>
+            </div>
+        </div>
+
+        <!-- 4. Logic & Simulation -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">⚙️</span> Logic & Simulation</h2>
+
+            <div class="function-card">
+                <span class="function-name">void updateShip()</span>
+                <p class="function-desc">Handles ship movement physics, applying velocity based on input and calculating the new position and rotation.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">bool checkCollision(float newX, float newZ)</span>
+                <p class="function-desc">Prevents the ship from sailing through islands by checking the distance between the ship and island centers.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void updateWake()</span>
+                <p class="function-desc">Updates the particle system for the water wake, fading out old particles and spawning new ones behind the ship.</p>
+            </div>
+        </div>
+
+        <!-- 5. Setup & Materials -->
+        <div class="category-section">
+            <h2 class="category-title"><span class="icon">🔧</span> Setup & Materials</h2>
+
+            <div class="function-card">
+                <span class="function-name">void init()</span>
+                <p class="function-desc">Initializes OpenGL state: enables lighting, depth testing, fog, and blend modes.</p>
+            </div>
+
+            <div class="function-card">
+                <span class="function-name">void setMaterialColor(float r, float g, float b, float a)</span>
+                <p class="function-desc">Helper function to easily set material properties (ambient, diffuse, specular) in one line of code.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
